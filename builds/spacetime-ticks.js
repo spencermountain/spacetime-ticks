@@ -1,4 +1,4 @@
-/* somehow v0.0.2
+/* somehow v0.0.3
    github.com/spencermountain/spacetime-ticks
    MIT
 */
@@ -4039,6 +4039,30 @@ module.exports = all;
 },{}],2:[function(_dereq_,module,exports){
 "use strict";
 
+var reduceTo = function reduceTo(arr, n) {
+  if (arr.length <= n || arr.length <= 5) {
+    return arr;
+  }
+
+  while (arr.length > n) {
+    //remove every other one
+    arr = arr.filter(function (o, i) {
+      return i % 2 === 0;
+    });
+
+    if (arr.length <= n || arr.length <= 5) {
+      return arr;
+    }
+  }
+
+  return arr;
+};
+
+module.exports = reduceTo;
+
+},{}],3:[function(_dereq_,module,exports){
+"use strict";
+
 var spacetime = _dereq_('spacetime');
 
 var methods = _dereq_('./methods');
@@ -4087,27 +4111,10 @@ var spacetimeTicks = function spacetimeTicks(start, end) {
 
 module.exports = spacetimeTicks;
 
-},{"./methods":3,"spacetime":1}],3:[function(_dereq_,module,exports){
+},{"./methods":4,"spacetime":1}],4:[function(_dereq_,module,exports){
 "use strict";
 
-var reduceTo = function reduceTo(arr, n) {
-  if (arr.length <= n || arr.length <= 5) {
-    return arr;
-  }
-
-  while (arr.length > n) {
-    //remove every other one
-    arr = arr.filter(function (o, i) {
-      return i % 2 === 0;
-    });
-
-    if (arr.length <= n || arr.length <= 5) {
-      return arr;
-    }
-  }
-
-  return arr;
-}; //increment by this unit
+var reduceTo = _dereq_('./_reduce'); //increment by this unit
 
 
 var allTicks = function allTicks(start, end, unit) {
@@ -4168,7 +4175,6 @@ var methods = {
     return ticks;
   },
   hours: function hours(start, end, n) {
-    console.log('hours');
     var ticks = allTicks(start, end, 'hour');
     ticks = reduceTo(ticks, n);
     var fmt = '{time}';
@@ -4190,5 +4196,5 @@ var methods = {
 };
 module.exports = methods;
 
-},{}]},{},[2])(2)
+},{"./_reduce":2}]},{},[3])(3)
 });

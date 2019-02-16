@@ -1,6 +1,6 @@
 {
   "name": "spacetime-ticks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "calculate the best breakpoints between two dates",
   "main": "builds/spacetime-ticks.js",
   "unpkg": "builds/spacetime-ticks.min.js",
@@ -33,7 +33,7 @@
     "htm": "2.0.0",
     "shelljs": "0.8.3",
     "somehow": "0.0.15",
-    "somehow-input": "0.0.5",
+    "somehow-input": "0.0.7",
     "spencer-color": "0.1.0",
     "spencer-css": "1.0.2",
     "terser": "3.16.1",

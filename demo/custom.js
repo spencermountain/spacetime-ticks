@@ -1,8 +1,7 @@
 const htm = require('htm')
 const vhtml = require('vhtml');
 let h = htm.bind(vhtml);
-// const inputs = require('somehow-input');
-const inputs = require('/Users/spencer/mountain/somehow-input/src');
+const inputs = require('somehow-input');
 const drawGraph = require('./_drawGraph')
 const spacetimeTicks = require('../src')
 

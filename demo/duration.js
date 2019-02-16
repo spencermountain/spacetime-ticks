@@ -2,8 +2,7 @@ const spacetime = require('spacetime')
 const htm = require('htm')
 const vhtml = require('vhtml');
 let h = htm.bind(vhtml);
-// const inputs = require('somehow-input');
-const inputs = require('/Users/spencer/mountain/somehow-input/src');
+const inputs = require('somehow-input');
 const drawGraph = require('./_drawGraph')
 const spacetimeTicks = require('../src')
 
@@ -23,10 +22,6 @@ const printTicks = function() {
   document.querySelector('#results').innerHTML = h`<table class="f2 mud w7">${ticks}</table>`
 }
 
-// let ticks = spacetimeTicks('June 5th 1997', 'Oct 4 2001', 5)
-// console.log(JSON.stringify(ticks, null, 2))
-
-// printTicks()
 let start = inputs.input({
   label: 'start',
   value: 'June 5th 1998',
