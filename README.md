@@ -1,6 +1,6 @@
 <div align="center">
   <div>spacetime-ticks</div>
-  <div>WIP</div>
+  <img src="https://cloud.githubusercontent.com/assets/399657/23590290/ede73772-01aa-11e7-8915-181ef21027bc.png" />
   <div><a href="https://spencermounta.in/spacetime-ticks/">demo</a></div>
   <a href="https://npmjs.org/package/spacetime-ticks">
     <img src="https://img.shields.io/npm/v/spacetime-ticks.svg?style=flat-square" />
@@ -29,11 +29,15 @@ let ticks=spacetimeTicks('June 5th 1992', 'Oct 4 2002', 5)
 ```
 
 This library has some opinions:
-* ticks should always be spaced evenly, even if this means less ticks
-* ticks should appear on the start of months, years, days
-* the ticks don't need to begin/end at the start/end.
-* less ticks are better than too-many ticks
+* ticks should always be `spaced evenly`, even if this means less ticks
+* a tick should appear **at the start** of months, years, days
+* they don't need to begin or end at the start andend.
+* *less ticks* are better than too-many ticks
 
-it was built for labelling an x-axis in a space-sensitive way, but can be used for any other stuff.
+it was built for labelling an x-axis in a space-limited way, but you can use it for whatever weird stuff.
+
+## See also:
+* [d3-time](https://github.com/d3/d3-time)
+* [sometime](https://github.com/spencermountain/sometime) - spacetime-calendar
 
 MIT
