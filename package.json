@@ -4,6 +4,8 @@
   "description": "calculate the best breakpoints between two dates",
   "main": "builds/spacetime-ticks.js",
   "unpkg": "builds/spacetime-ticks.min.js",
+  "author": "Spencer Kelly (spencermountain)",
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm run start",
@@ -15,26 +17,25 @@
     "type": "git",
     "url": "git+https://github.com/spencermountain/frown.git"
   },
-  "author": "Spencer Kelly (spencermountain)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/spencermountain/frown/issues"
   },
   "homepage": "https://github.com/spencermountain/frown#readme",
   "dependencies": {
-    "spacetime": "5.1.1"
+    "spacetime": "5.2.2"
   },
   "devDependencies": {
+    "somehow-input": "0.0.5",
     "spencer-color": "0.1.0",
-    "spencer-css": "0.0.6",
+    "spencer-css": "1.0.2",
     "htm": "2.0.0",
     "vhtml": "2.1.0",
-    "@babel/core": "7.2.2",
-    "@babel/preset-env": "7.2.3",
+    "@babel/core": "7.3.3",
+    "@babel/preset-env": "7.3.1",
     "babelify": "10.0.0",
-    "budo": "11.5.0",
+    "budo": "11.6.0",
     "derequire": "2.0.6",
     "shelljs": "0.8.3",
-    "terser": "3.14.1"
+    "terser": "3.16.1"
   }
 }

@@ -1,33 +1,24 @@
 const spacetime = require('spacetime')
 const methods = require('./methods')
 
-const chooseMethod = function(start, end, n) {
+const chooseMethod = function(start, end, n = 6) {
   let diff = start.diff(end)
-  console.log(diff)
-  //1998 -> 2012
-  if (diff.year > 3) {
-    return methods.years.many(start, end, n)
+  if (diff.years > 3) {
+    return methods.years(start, end, n)
   }
-// // let diff = end.epoch - start.epoch
-// if (diff > year * 3) {
-//   return 'yyyy'
-// }
-// if (diff > year) {
-//   return 'MMM yyyy'
-// }
-// //sept
-// if (diff > sixMonth) {
-//   return 'MMM'
-// }
-// //sept 1
-// if (diff > month) {
-//   return 'MMM d'
-// }
-// //time
-// if (diff < day) {
-//   return 'h:mm a'
-// }
-// return 'MMM d'
+  if (diff.months > 3) {
+    return methods.months(start, end, n)
+  }
+  if (diff.days > 3) {
+    return methods.days(start, end, n)
+  }
+  if (diff.hours > 3) {
+    return methods.hours(start, end, n)
+  }
+  if (diff.minutes > 3) {
+    return methods.minutes(start, end, n)
+  }
+  return methods.months(start, end, n)
 }
 
 const spacetimeTicks = function(start, end, n = 6) {

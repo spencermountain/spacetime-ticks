@@ -20,14 +20,20 @@ const spacetimeTicks=require('spacetime-ticks')
 
 let ticks=spacetimeTicks('June 5th 1992', 'Oct 4 2002', 5)
 // [
-//   {label:'Jan 1994', epoch:1542983206907},
-//   {label:'Jan 1996', epoch:1544983216907},
-//   {label:'Jan 1998', epoch:1545983206407},
-//   {label:'Jan 2000', epoch:1546983206201},
-//   {label:'Jan 2002', epoch:1549983204902},
+// { label: "1993", epoch: 725864400000, value: 0.055 }
+// { label: "1995", epoch: 788936400000, value: 0.248 }
+// { label: "1997", epoch: 852094800000, value: 0.442 }
+// { label: "1999", epoch: 915166800000, value: 0.636 }
+// { label: "2001", epoch: 978325200000, value: 0.829 }
 // ]
 ```
 
-work-in-progress
+This library has some opinions:
+* ticks should always be spaced evenly, even if this means less ticks
+* ticks should appear on the start of months, years, days
+* the ticks don't need to begin/end at the start/end.
+* less ticks are better than too-many ticks
+
+it was built for labelling an x-axis in a space-sensitive way, but can be used for any other stuff.
 
 MIT
