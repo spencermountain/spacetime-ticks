@@ -3,6 +3,7 @@ const vhtml = require('vhtml');
 let h = htm.bind(vhtml);
 // const inputs = require('somehow-input');
 const inputs = require('/Users/spencer/mountain/somehow-input/src');
+const drawGraph = require('./_drawGraph')
 const spacetimeTicks = require('../src')
 
 const printTicks = function() {
@@ -10,13 +11,14 @@ const printTicks = function() {
   let end = document.querySelector('#end').querySelector('input').value
   let n = document.querySelector('#ticks').querySelector('select').value
   let ticks = spacetimeTicks(start, end, n)
+  drawGraph(ticks, '#graph-two')
   ticks = ticks.map((o) => {
     return h`<tr >
       <td class="">${o.label}</td>
       <td class="light f09 m09">${o.value}</td>
     </tr>`
   })
-  document.querySelector('#stage').innerHTML = h`<table class="f2 mud w7">${ticks}</table>`
+  document.querySelector('#results-two').innerHTML = h`<table class="f2 mud w7">${ticks}</table>`
 }
 
 let start = inputs.input({

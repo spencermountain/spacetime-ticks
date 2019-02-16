@@ -25,17 +25,18 @@
     "spacetime": "5.2.2"
   },
   "devDependencies": {
-    "somehow-input": "0.0.5",
-    "spencer-color": "0.1.0",
-    "spencer-css": "1.0.2",
-    "htm": "2.0.0",
-    "vhtml": "2.1.0",
     "@babel/core": "7.3.3",
     "@babel/preset-env": "7.3.1",
     "babelify": "10.0.0",
     "budo": "11.6.0",
     "derequire": "2.0.6",
+    "htm": "2.0.0",
     "shelljs": "0.8.3",
-    "terser": "3.16.1"
+    "somehow": "0.0.15",
+    "somehow-input": "0.0.5",
+    "spencer-color": "0.1.0",
+    "spencer-css": "1.0.2",
+    "terser": "3.16.1",
+    "vhtml": "2.1.0"
   }
 }

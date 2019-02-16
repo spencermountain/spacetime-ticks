@@ -10,10 +10,13 @@
   </a>
 </div>
 
-**work-in-progress**
 calculate some sensible break-points between two dates, using the [spacetime](https://github.com/spencermountain/spacetime) date library.
 
 `npm i spacetime-ticks`
+
+<a href="https://spencermounta.in/spacetime-ticks">
+  <img src="https://user-images.githubusercontent.com/399657/52904717-02cdb280-31fe-11e9-902d-8b012e72ed15.gif" />
+</a>
 
 ```js
 const spacetimeTicks=require('spacetime-ticks')

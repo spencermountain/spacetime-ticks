@@ -53,7 +53,6 @@ const methods = {
     return ticks
   },
   hours: (start, end, n) => {
-    console.log('hours')
     let ticks = allTicks(start, end, 'hour')
     ticks = reduceTo(ticks, n)
     let fmt = '{time}'

@@ -1,9 +1,10 @@
 const spacetime = require('spacetime')
 const htm = require('htm')
 const vhtml = require('vhtml');
+let h = htm.bind(vhtml);
 // const inputs = require('somehow-input');
 const inputs = require('/Users/spencer/mountain/somehow-input/src');
-let h = htm.bind(vhtml);
+const drawGraph = require('./_drawGraph')
 const spacetimeTicks = require('../src')
 
 const printTicks = function() {
@@ -12,13 +13,14 @@ const printTicks = function() {
   let n = document.querySelector('#ticks-two').querySelector('select').value
   let end = spacetime(start).epoch + Number(duration)
   let ticks = spacetimeTicks(start, end, n)
+  drawGraph(ticks, '#graph')
   ticks = ticks.map((o) => {
     return h`<tr >
     <td class="">${o.label}</td>
     <td class="light f09 m09">${o.value}</td>
   </tr>`
   })
-  document.querySelector('#graph').innerHTML = h`<table class="f2 mud w7">${ticks}</table>`
+  document.querySelector('#results').innerHTML = h`<table class="f2 mud w7">${ticks}</table>`
 }
 
 // let ticks = spacetimeTicks('June 5th 1997', 'Oct 4 2001', 5)
