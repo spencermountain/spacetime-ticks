@@ -3,6 +3,12 @@ const methods = require('./methods')
 
 const chooseMethod = function(start, end, n = 6) {
   let diff = start.diff(end)
+  if (diff.years > 300) {
+    return methods.centuries(start, end, n)
+  }
+  if (diff.years > 30) {
+    return methods.decades(start, end, n)
+  }
   if (diff.years > 3) {
     return methods.years(start, end, n)
   }

@@ -14,7 +14,7 @@ const allTicks = function(start, end, unit) {
 
 const formatTicks = function(arr, fmt, start, end) {
   let delta = end.epoch - start.epoch
-  return arr.map((s) => {
+  return arr.map(s => {
     let percent = (s.epoch - start.epoch) / delta
     return {
       label: s.format(fmt),
@@ -25,6 +25,26 @@ const formatTicks = function(arr, fmt, start, end) {
 }
 
 const methods = {
+  centuries: (start, end, n) => {
+    let ticks = allTicks(start, end, 'century')
+    ticks = reduceTo(ticks, n)
+    let fmt = '{year}'
+    if (start.diff(end, 'year') > 6) {
+      fmt = '{year}'
+    }
+    ticks = formatTicks(ticks, fmt, start, end)
+    return ticks
+  },
+  decades: (start, end, n) => {
+    let ticks = allTicks(start, end, 'decade')
+    ticks = reduceTo(ticks, n)
+    let fmt = '{year}'
+    if (start.diff(end, 'year') > 6) {
+      fmt = '{year}'
+    }
+    ticks = formatTicks(ticks, fmt, start, end)
+    return ticks
+  },
   years: (start, end, n) => {
     let ticks = allTicks(start, end, 'year')
     ticks = reduceTo(ticks, n)
