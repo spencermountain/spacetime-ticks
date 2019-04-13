@@ -1,11 +1,11 @@
-/* somehow v0.0.3
+/* somehow v0.0.5
    github.com/spencermountain/spacetime-ticks
    MIT
 */
 
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.spacetimeTicks = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
 (function (global){
-/* spacetime v5.2.1
+/* spacetime v5.7.0
    github.com/spencermountain/spacetime
    MIT
 */
@@ -13,28 +13,28 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.spacetime = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof _dereq_&&_dereq_;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof _dereq_&&_dereq_,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
 "use strict";
 
-module.exports = '5.2.1';
+module.exports = '5.7.0';
 
 },{}],2:[function(_dereq_,module,exports){
-'use strict';
+"use strict";
 
 var shortDays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 var longDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 module.exports = {
-  short: function short() {
+  "short": function short() {
     return shortDays;
   },
-  long: function long() {
+  "long": function long() {
     return longDays;
   },
   set: function set(i18n) {
-    shortDays = i18n.short;
-    longDays = i18n.long;
+    shortDays = i18n["short"];
+    longDays = i18n["long"];
   }
 };
 
 },{}],3:[function(_dereq_,module,exports){
-'use strict';
+"use strict";
 
 var o = {
   millisecond: 1
@@ -43,7 +43,7 @@ o.second = 1000;
 o.minute = 60000;
 o.hour = 3.6e6; // dst is supported post-hoc
 
-o.day = 8.64e7; // 
+o.day = 8.64e7; //
 
 o.date = o.day;
 o.month = 8.64e7 * 29.5; //(average)
@@ -76,7 +76,7 @@ var monthLengths = [31, // January - 31 days
 module.exports = monthLengths;
 
 },{}],5:[function(_dereq_,module,exports){
-'use strict';
+"use strict";
 
 var shortMonths = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sept', 'oct', 'nov', 'dec'];
 var longMonths = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
@@ -99,18 +99,18 @@ function buildMapping() {
 }
 
 module.exports = {
-  short: function short() {
+  "short": function short() {
     return shortMonths;
   },
-  long: function long() {
+  "long": function long() {
     return longMonths;
   },
   mapping: function mapping() {
     return buildMapping();
   },
   set: function set(i18n) {
-    shortMonths = i18n.short;
-    longMonths = i18n.long;
+    shortMonths = i18n["short"];
+    longMonths = i18n["long"];
   }
 };
 
@@ -120,7 +120,8 @@ module.exports = {
 module.exports = [null, [0, 1], //jan 1
 [3, 1], //apr 1
 [6, 1], //july 1
-[9, 1]];
+[9, 1] //oct 1
+];
 
 },{}],7:[function(_dereq_,module,exports){
 "use strict";
@@ -146,8 +147,9 @@ module.exports = {
 };
 
 },{}],8:[function(_dereq_,module,exports){
-'use strict'; //git:blame @JuliasCaesar https://www.timeanddate.com/date/leapyear.html
+"use strict";
 
+//git:blame @JuliasCaesar https://www.timeanddate.com/date/leapyear.html
 exports.isLeapYear = function (year) {
   return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
 }; // unsurprisingly-nasty `typeof date` call
@@ -165,8 +167,8 @@ exports.isObject = function (input) {
   return Object.prototype.toString.call(input) === '[object Object]';
 };
 
-exports.zeroPad = function (str, len) {
-  len = len || 2;
+exports.zeroPad = function (str) {
+  var len = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
   var pad = '0';
   str = str + '';
   return str.length >= len ? str : new Array(len - str.length + 1).join(pad) + str;
@@ -204,10 +206,12 @@ exports.toCardinal = function (str) {
   str = String(str);
   str = str.replace(/([0-9])(st|nd|rd|th)$/i, '$1');
   return parseInt(str, 10);
-};
+}; //used mostly for cleanup of unit names, like 'months'
 
-exports.normalize = function (str) {
-  str = str.toLowerCase();
+
+exports.normalize = function () {
+  var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  str = str.toLowerCase().trim();
   str = str.replace(/ies$/, 'y'); //'centuries'
 
   str = str.replace(/s$/, '');
@@ -246,8 +250,15 @@ exports.beADate = function (d, s) {
   return d;
 };
 
+exports.formatTimezone = function (offset) {
+  var delimiter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var absOffset = Math.abs(offset);
+  var sign = offset > 0 ? '+' : '-';
+  return "".concat(sign).concat(exports.zeroPad(absOffset)).concat(delimiter, "00");
+};
+
 },{}],9:[function(_dereq_,module,exports){
-'use strict';
+"use strict";
 
 var Spacetime = _dereq_('./spacetime');
 
@@ -293,8 +304,8 @@ main.version = version; //aliases:
 main.plugin = main.extend;
 module.exports = main;
 
-},{"../_version":1,"./spacetime":34,"./whereIts":41}],10:[function(_dereq_,module,exports){
-'use strict';
+},{"../_version":1,"./spacetime":36,"./whereIts":43}],10:[function(_dereq_,module,exports){
+"use strict";
 
 var monthLengths = _dereq_('../data/monthLengths');
 
@@ -329,7 +340,7 @@ var hasDate = function hasDate(obj) {
 module.exports = hasDate;
 
 },{"../data/monthLengths":4,"../fns":8}],11:[function(_dereq_,module,exports){
-'use strict';
+"use strict";
 
 var strFmt = _dereq_('./strParse');
 
@@ -350,13 +361,19 @@ var namedDates = _dereq_('./named-dates'); //we have to actually parse these inp
 // this is only really ambiguous until 2054 or so
 
 
-var minimumEpoch = 2500000000; //support [2016, 03, 01] format
+var minimumEpoch = 2500000000;
+var defaults = {
+  year: new Date().getFullYear(),
+  month: 0,
+  date: 1 //support [2016, 03, 01] format
+
+};
 
 var handleArray = function handleArray(s, arr) {
   var order = ['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'];
 
-  for (var i = 0; i < arr.length; i++) {
-    var num = arr[i] || 0;
+  for (var i = 0; i < order.length; i++) {
+    var num = arr[i] || defaults[order[i]] || 0;
     s = s[order[i]](num);
   }
 
@@ -365,6 +382,7 @@ var handleArray = function handleArray(s, arr) {
 
 
 var handleObject = function handleObject(s, obj) {
+  obj = Object.assign({}, defaults, obj);
   var keys = Object.keys(obj);
 
   for (var i = 0; i < keys.length; i++) {
@@ -379,7 +397,7 @@ var handleObject = function handleObject(s, obj) {
       continue;
     }
 
-    var num = obj[unit] || 0;
+    var num = obj[unit] || defaults[unit] || 0;
     s = s[unit](num);
   }
 
@@ -423,6 +441,7 @@ var parseInput = function parseInput(s, input, givenTz) {
     //support spacetime object as input
     if (input.epoch) {
       s.epoch = input.epoch;
+      s.tz = input.tz;
       return s;
     }
 
@@ -436,8 +455,9 @@ var parseInput = function parseInput(s, input, givenTz) {
   } //little cleanup..
 
 
-  input = input.replace(/\b(mon|tues|wed|wednes|thu|thurs|fri|sat|satur|sun)(day)?\b/, '');
-  input = input.trim().replace(/ +/g, ' '); //try some known-words, like 'now'
+  input = input.replace(/\b(mon|tues|wed|wednes|thu|thurs|fri|sat|satur|sun)(day)?\b/i, '');
+  input = input.replace(/,/g, '');
+  input = input.replace(/ +/g, ' ').trim(); //try some known-words, like 'now'
 
   if (namedDates.hasOwnProperty(input) === true) {
     s = namedDates[input](s);
@@ -455,7 +475,7 @@ var parseInput = function parseInput(s, input, givenTz) {
   }
 
   if (s.silent === false) {
-    console.warn('Warning: couldn\'t parse date-string: \'' + input + '\'');
+    console.warn("Warning: couldn't parse date-string: '" + input + "'");
   }
 
   s.epoch = null;
@@ -464,8 +484,8 @@ var parseInput = function parseInput(s, input, givenTz) {
 
 module.exports = parseInput;
 
-},{"../fns":8,"./named-dates":12,"./strParse":14}],12:[function(_dereq_,module,exports){
-'use strict';
+},{"../fns":8,"./named-dates":12,"./strParse":15}],12:[function(_dereq_,module,exports){
+"use strict";
 
 var dates = {
   now: function now(s) {
@@ -510,8 +530,9 @@ dates['new years eve'] = dates['new years'];
 module.exports = dates;
 
 },{}],13:[function(_dereq_,module,exports){
-'use strict'; //pull-apart ISO offsets, like "+0100"
+"use strict";
 
+//pull-apart ISO offsets, like "+0100"
 var parseOffset = function parseOffset(s, offset) {
   if (!offset) {
     return s;
@@ -520,32 +541,35 @@ var parseOffset = function parseOffset(s, offset) {
 
   if (offset === 'Z') {
     offset = '+0000';
-  } //support "+01:00"
+  } // according to ISO8601, tz could be hh:mm, hhmm or hh
+  // so need few more steps before the calculation.
 
 
-  if (/:00/.test(offset) === true) {
-    offset = offset.replace(/:00/, '');
-  } //support "+01:30"
+  var num = 0; // for (+-)hh:mm
+
+  if (/^[\+-]?[0-9]{2}:[0-9]{2}$/.test(offset)) {
+    //support "+01:00"
+    if (/:00/.test(offset) === true) {
+      offset = offset.replace(/:00/, '');
+    } //support "+01:30"
 
 
-  if (/:00/.test(offset) === true) {
-    offset = offset.replace(/:00/, '.5');
+    if (/:30/.test(offset) === true) {
+      offset = offset.replace(/:30/, '.5');
+    }
+  } // for (+-)hhmm
+
+
+  if (/^[\+-]?[0-9]{4}$/.test(offset)) {
+    offset = offset.replace(/30$/, '.5');
   }
 
-  var num = parseInt(offset, 10); //divide by 100 or 10 - , "+0100", "+01"
+  num = parseFloat(offset); //divide by 100 or 10 - , "+0100", "+01"
 
   if (Math.abs(num) > 100) {
     num = num / 100;
-  } // console.log(offset, num)
-
-
-  var current = s.timezone().current.offset;
-
-  if (current === num) {
-    //we cool..
-    return s;
   } //okay, try to match it to a utc timezone
-  //this is opposite! a -5 offset maps to Etc/GMT+5  ¯\_()_/¯
+  //remember - this is opposite! a -5 offset maps to Etc/GMT+5  ¯\_(:/)_/¯
   //https://askubuntu.com/questions/519550/why-is-the-8-timezone-called-gmt-8-in-the-filesystem
 
 
@@ -556,19 +580,11 @@ var parseOffset = function parseOffset(s, offset) {
   }
 
   var tz = 'etc/gmt' + num;
-  var zones = s.timezones; // console.log(tz)
+  var zones = s.timezones;
 
   if (zones[tz]) {
+    // log a warning if we're over-writing a given timezone?
     // console.log('changing timezone to: ' + tz)
-    //log a warning if we're over-writing a given timezone
-    // if (givenTz && zones[givenTz] && zones[givenTz].offset !== zones[tz].offset && s.silent === false) {
-    //don't log during our tests, either..
-    // if (typeof process !== 'undefined' && process.env && !process.env.TESTENV) {
-    //   console.warn('  - Setting timezone to: \'' + tz + '\'')
-    //   console.warn('     from ISO string \'' + offset + '\'')
-    //   console.warn('     overwriting given timezone: \'' + givenTz + '\'\n')
-    // }
-    // }
     s.tz = tz;
   }
 
@@ -578,7 +594,69 @@ var parseOffset = function parseOffset(s, offset) {
 module.exports = parseOffset;
 
 },{}],14:[function(_dereq_,module,exports){
-'use strict';
+"use strict";
+
+var parseTime = function parseTime(s) {
+  var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  str = str.replace(/^\s+/, '').toLowerCase(); //trim
+  //formal time formats - 04:30.23
+
+  var arr = str.match(/([0-9]{1,2}):([0-9]{1,2}):?([0-9]{1,2})?[:\.]?([0-9]{1,4})?/);
+
+  if (arr !== null) {
+    //validate it a little
+    var h = Number(arr[1]);
+
+    if (h < 0 || h > 24) {
+      return s.startOf('day');
+    }
+
+    var m = Number(arr[2]); //don't accept '5:3pm'
+
+    if (arr[2].length < 2 || m < 0 || m > 59) {
+      return s.startOf('day');
+    }
+
+    s = s.hour(h);
+    s = s.minute(m);
+    s = s.seconds(arr[3] || 0);
+    s = s.millisecond(arr[4] || 0); //parse-out am/pm
+
+    var ampm = str.match(/[\b0-9](am|pm)\b/);
+
+    if (ampm !== null && ampm[1]) {
+      s = s.ampm(ampm[1]);
+    }
+
+    return s;
+  } //try an informal form - 5pm (no minutes)
+
+
+  arr = str.match(/([0-9]+) ?(am|pm)/);
+
+  if (arr !== null && arr[1]) {
+    var _h = Number(arr[1]); //validate it a little..
+
+
+    if (_h > 12 || _h < 1) {
+      return s.startOf('day');
+    }
+
+    s = s.hour(arr[1] || 0);
+    s = s.ampm(arr[2]);
+    s = s.startOf('hour');
+    return s;
+  } //no time info found, use start-of-day
+
+
+  s = s.startOf('day');
+  return s;
+};
+
+module.exports = parseTime;
+
+},{}],15:[function(_dereq_,module,exports){
+"use strict";
 
 var walkTo = _dereq_('../methods/set/walk');
 
@@ -586,37 +664,17 @@ var months = _dereq_('../data/months').mapping();
 
 var parseOffset = _dereq_('./parseOffset');
 
+var parseTime = _dereq_('./parseTime');
+
 var hasDate = _dereq_('./hasDate');
 
-var fns = _dereq_('../fns'); // const zones = require('../../data');
+var fns = _dereq_('../fns');
 
-
-var parseHour = function parseHour(s, str) {
-  str = str.replace(/^\s+/, ''); //trim
-
-  var arr = str.match(/([0-9]{1,2}):([0-9]{1,2}):?([0-9]{1,2})?[:\.]?([0-9]{1,4})?/);
-
-  if (arr) {
-    s = s.hour(arr[1]);
-    s = s.minute(arr[2]);
-
-    if (arr[3]) {
-      s = s.seconds(arr[3]);
-    }
-
-    if (arr[4]) {
-      s = s.millisecond(arr[4]);
-    }
-  }
-
-  return s;
-};
-
-var parseYear = function parseYear(str) {
-  str = str || ''; //support '18 -> 2018
+var parseYear = function parseYear() {
+  var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  //support '18 -> 2018
   // str = str.replace(/^'([0-9]{2})/, '20$1')
   // str = str.replace('([0-9]+) ?b\.?c\.?$', '-$1')
-
   var year = parseInt(str.trim(), 10);
   year = year || new Date().getFullYear();
   return year;
@@ -640,7 +698,7 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
 
     parseOffset(s, arr[5], givenTz, options);
     walkTo(s, obj);
-    s = parseHour(s, arr[4]);
+    s = parseTime(s, arr[4]);
     return s;
   }
 }, //iso "2015-03-25" or "2015/03/25" //0-based-months!
@@ -665,6 +723,7 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
     }
 
     walkTo(s, obj);
+    s = parseTime(s);
     return s;
   }
 }, //short - uk "03/25/2015"  //0-based-months!
@@ -693,12 +752,13 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
     }
 
     walkTo(s, obj);
+    s = parseTime(s);
     return s;
   }
 }, //Long "Mar 25 2015"
 //February 22, 2017 15:30:00
 {
-  reg: /^([a-z]+) ([0-9]{1,2}(?:st|nd|rd|th)?),?( [0-9]{4})?( ([0-9:]+))?$/i,
+  reg: /^([a-z]+) ([0-9]{1,2}(?:st|nd|rd|th)?),?( [0-9]{4})?( ([0-9:]+( ?am| ?pm)?))?$/i,
   parse: function parse(s, arr) {
     var month = months[arr[1].toLowerCase()];
     var year = parseYear(arr[3]);
@@ -714,11 +774,7 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
     }
 
     walkTo(s, obj);
-
-    if (arr[4]) {
-      s = parseHour(s, arr[4]);
-    }
-
+    s = parseTime(s, arr[4]);
     return s;
   }
 }, //February 2017 (implied date)
@@ -739,11 +795,7 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
     }
 
     walkTo(s, obj);
-
-    if (arr[4]) {
-      s = parseHour(s, arr[4]);
-    }
-
+    s = parseTime(s, arr[4]);
     return s;
   }
 }, //Long "25 Mar 2015"
@@ -764,6 +816,7 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
     }
 
     walkTo(s, obj);
+    s = parseTime(s);
     return s;
   }
 }, {
@@ -784,6 +837,7 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
     }
 
     walkTo(s, obj);
+    s = parseTime(s);
     return s;
   }
 }, {
@@ -809,13 +863,14 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
     }
 
     walkTo(s, obj);
+    s = parseTime(s);
     return s;
   }
 }];
 module.exports = strFmt;
 
-},{"../data/months":5,"../fns":8,"../methods/set/walk":31,"./hasDate":10,"./parseOffset":13}],15:[function(_dereq_,module,exports){
-'use strict';
+},{"../data/months":5,"../fns":8,"../methods/set/walk":33,"./hasDate":10,"./parseOffset":13,"./parseTime":14}],16:[function(_dereq_,module,exports){
+"use strict";
 
 var _format = _dereq_('./methods/format');
 
@@ -831,6 +886,8 @@ var _since = _dereq_('./methods/since');
 
 var ends = _dereq_('./methods/startOf');
 
+var _every = _dereq_('./methods/every');
+
 var _timezone = _dereq_('./timezone/index');
 
 var findTz = _dereq_('./timezone/find');
@@ -841,9 +898,14 @@ var fns = _dereq_('./fns'); //the spacetime instance methods (also, the API)
 
 
 var methods = {
-  set: function set(input) {
+  set: function set(input, tz) {
     var s = this.clone();
     s = handleInput(s, input);
+
+    if (tz) {
+      this.tz = findTz(tz);
+    }
+
     return s;
   },
   timezone: function timezone() {
@@ -911,11 +973,15 @@ var methods = {
     return !isNaN(this.d.getTime());
   },
   //travel to this timezone
-  goto: function goto(tz) {
+  "goto": function goto(tz) {
     var s = this.clone();
     s.tz = findTz(tz, s.timezones); //science!
 
     return s;
+  },
+  //get each week/month/day between a -> b
+  every: function every(unit, to) {
+    return _every(this, unit, to);
   },
   isAwake: function isAwake() {
     var hour = this.hour(); //10pm -> 8am
@@ -951,10 +1017,11 @@ var methods = {
 };
 methods.inDST = methods.isDST;
 methods.round = methods.nearest;
+methods.each = methods.every;
 module.exports = methods;
 
-},{"./fns":8,"./input":11,"./methods/diff":18,"./methods/format":20,"./methods/format/unixFmt":21,"./methods/nearest":23,"./methods/progress":24,"./methods/since":32,"./methods/startOf":33,"./timezone/find":36,"./timezone/index":38}],16:[function(_dereq_,module,exports){
-'use strict';
+},{"./fns":8,"./input":11,"./methods/diff":19,"./methods/every":20,"./methods/format":22,"./methods/format/unixFmt":23,"./methods/nearest":25,"./methods/progress":26,"./methods/since":34,"./methods/startOf":35,"./timezone/find":38,"./timezone/index":40}],17:[function(_dereq_,module,exports){
+"use strict";
 
 var walkTo = _dereq_('./set/walk');
 
@@ -978,16 +1045,26 @@ var keep = {
   decade: order,
   century: order
 };
-keep.week = keep.date;
+keep.week = keep.hour;
 keep.season = keep.date;
-keep.quarter = keep.date;
+keep.quarter = keep.date; // Units need to be dst adjuested
+
+var dstAwareUnits = {
+  year: true,
+  quarter: true,
+  season: true,
+  month: true,
+  week: true,
+  day: true
+};
 var keepDate = {
   month: true,
   quarter: true,
   season: true,
-  year: true
-}; //month is the only thing we 'model/compute'
-//- because ms-shifting can be off by enough
+  year: true //month is the only thing we 'model/compute'
+  //- because ms-shifting can be off by enough
+
+};
 
 var rollMonth = function rollMonth(want, old) {
   //increment year
@@ -1017,7 +1094,7 @@ var addMethods = function addMethods(SpaceTime) {
   SpaceTime.prototype.add = function (num, unit) {
     var s = this.clone();
 
-    if (!unit) {
+    if (!unit || num === 0) {
       return s; //don't bother
     }
 
@@ -1043,6 +1120,11 @@ var addMethods = function addMethods(SpaceTime) {
       keep[unit].forEach(function (u) {
         want[u] = old[u]();
       });
+    }
+
+    if (dstAwareUnits[unit]) {
+      var diff = old.timezone().current.offset - s.timezone().current.offset;
+      s.epoch += diff * 3600 * 1000;
     } //ensure month/year has ticked-over
 
 
@@ -1107,8 +1189,8 @@ var addMethods = function addMethods(SpaceTime) {
 
 module.exports = addMethods;
 
-},{"../data/milliseconds":3,"../data/monthLengths":4,"../fns":8,"./set/walk":31}],17:[function(_dereq_,module,exports){
-'use strict';
+},{"../data/milliseconds":3,"../data/monthLengths":4,"../fns":8,"./set/walk":33}],18:[function(_dereq_,module,exports){
+"use strict";
 
 var fns = _dereq_('../fns');
 
@@ -1160,9 +1242,9 @@ var addMethods = function addMethods(SpaceTime) {
       }
 
       return startEpoch < this.epoch && this.epoch < endEpoch;
-    }
-  }; //hook them into proto
+    } //hook them into proto
 
+  };
   Object.keys(methods).forEach(function (k) {
     SpaceTime.prototype[k] = methods[k];
   });
@@ -1170,8 +1252,8 @@ var addMethods = function addMethods(SpaceTime) {
 
 module.exports = addMethods;
 
-},{"../fns":8}],18:[function(_dereq_,module,exports){
-'use strict';
+},{"../fns":8}],19:[function(_dereq_,module,exports){
+"use strict";
 
 var fns = _dereq_('../fns'); //init this function up here
 
@@ -1190,12 +1272,14 @@ var climb = function climb(a, b, unit) {
   } //oops, we went too-far..
 
 
-  if (!a.isSame(b, unit)) {
+  if (a.isAfter(b, unit)) {
     i -= 1;
   }
 
   return i;
-};
+}; //these small units can just be 'eyeballed'
+//it's way too slow to do them procedurally
+
 
 var diffQuick = function diffQuick(a, b) {
   var ms = b.epoch - a.epoch;
@@ -1205,6 +1289,8 @@ var diffQuick = function diffQuick(a, b) {
   };
   obj.minutes = parseInt(obj.seconds / 60, 10);
   obj.hours = parseInt(obj.minutes / 60, 10);
+  obj.days = parseInt(obj.hours / 24, 10);
+  obj.weeks = parseInt(obj.days / 7, 10);
   return obj;
 };
 
@@ -1241,9 +1327,14 @@ doAll = function doAll(a, b) {
   //do ms, seconds, minutes in a faster way
   var all = diffQuick(a, b);
   all.years = diff(a, b, 'year');
-  all.months = diff(a, b, 'month');
+  all.months = diff(a, b, 'month'); //do a fast-diff for days/weeks, if it's huge
+
+  if (Math.abs(all.years) > 50) {
+    return all;
+  }
+
   all.weeks = diff(a, b, 'week');
-  all.days = diff(a, b, 'day'); //only slow-compute hours if it's a small diff
+  all.days = diff(a, b, 'day'); //only fully-compute hours if it's a small diff
 
   if (all.years === 0) {
     all.hours = diff(a, b, 'hour');
@@ -1254,23 +1345,98 @@ doAll = function doAll(a, b) {
 
 module.exports = diff;
 
-},{"../fns":8}],19:[function(_dereq_,module,exports){
+},{"../fns":8}],20:[function(_dereq_,module,exports){
 "use strict";
 
-var fns = _dereq_('../../fns'); // "+01:00", "+0100", or simply "+01"
+var fns = _dereq_('../fns');
+
+var days = _dereq_('../data/days'); //is it 'wednesday'?
+
+
+var isDay = function isDay(unit) {
+  if (days["short"]().find(function (s) {
+    return s === unit;
+  })) {
+    return true;
+  }
+
+  if (days["long"]().find(function (s) {
+    return s === unit;
+  })) {
+    return true;
+  }
+
+  return false;
+}; // return a list of the weeks/months/days between a -> b
+// returns spacetime objects in the timezone of the input
+
+
+var every = function every(start) {
+  var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var end = arguments.length > 2 ? arguments[2] : undefined;
+
+  if (!unit || !end) {
+    return [];
+  } //cleanup unit param
+
+
+  unit = fns.normalize(unit); //cleanup to param
+
+  end = start.clone().set(end); //swap them, if they're backwards
+
+  if (start.isAfter(end)) {
+    var tmp = start;
+    start = end;
+    end = tmp;
+  } //support 'every wednesday'
+
+
+  var d = start.clone();
+
+  if (isDay(unit)) {
+    d = d.next(unit);
+    unit = 'week';
+  } else {
+    d = d.next(unit);
+  } //okay, actually start doing it
+
+
+  var result = [];
+
+  while (d.isBefore(end)) {
+    result.push(d);
+    d = d.add(1, unit);
+  }
+
+  return result;
+};
+
+module.exports = every;
+
+},{"../data/days":2,"../fns":8}],21:[function(_dereq_,module,exports){
+"use strict";
+
+var fns = _dereq_('../../fns'); // create the timezone offset part of an iso timestamp
+// it's kind of nuts how involved this is
+// "+01:00", "+0100", or simply "+01"
 
 
 var isoOffset = function isoOffset(s) {
   var offset = s.timezone().current.offset;
-  var minute = '00';
+  var isNegative = offset < 0;
+  var minute = '00'; //handle 5.5 → '5:30'
 
-  if (offset % 1 === 0.5) {
-    //fraction of the hour
+  if (Math.abs(offset % 1) === 0.5) {
     minute = '30';
-    offset = Math.floor(offset);
+
+    if (offset >= 0) {
+      offset = Math.floor(offset);
+    } else {
+      offset = Math.ceil(offset);
+    }
   }
 
-  if (offset < 0) {
+  if (isNegative) {
     //handle negative sign
     offset *= -1;
     offset = fns.zeroPad(offset, 2);
@@ -1280,9 +1446,9 @@ var isoOffset = function isoOffset(s) {
     offset = '+' + offset;
   }
 
-  offset = offset + ':' + minute; //this is a little cleaner?
+  offset = offset + ':' + minute; //'Z' means 00
 
-  if (offset === "+00:00") {
+  if (offset === '+00:00') {
     offset = 'Z';
   }
 
@@ -1291,8 +1457,8 @@ var isoOffset = function isoOffset(s) {
 
 module.exports = isoOffset;
 
-},{"../../fns":8}],20:[function(_dereq_,module,exports){
-'use strict';
+},{"../../fns":8}],22:[function(_dereq_,module,exports){
+"use strict";
 
 var fns = _dereq_('../../fns');
 
@@ -1307,7 +1473,7 @@ var format = {
     return fns.titleCase(s.dayName());
   },
   'day-short': function dayShort(s) {
-    return fns.titleCase(days.short()[s.day()]);
+    return fns.titleCase(days["short"]()[s.day()]);
   },
   'day-number': function dayNumber(s) {
     return s.day();
@@ -1331,7 +1497,7 @@ var format = {
     return fns.titleCase(s.monthName());
   },
   'month-short': function monthShort(s) {
-    return fns.titleCase(months.short()[s.month()]);
+    return fns.titleCase(months["short"]()[s.month()]);
   },
   'month-number': function monthNumber(s) {
     return s.month();
@@ -1442,14 +1608,14 @@ var format = {
     return new Date(s.epoch).toISOString(); //2017-03-08T19:45:28.367Z
   },
   //i made these up
-  'nice': function nice(s) {
-    return "".concat(months.short()[s.month()], " ").concat(fns.ordinal(s.date()), ", ").concat(s.time());
+  nice: function nice(s) {
+    return "".concat(months["short"]()[s.month()], " ").concat(fns.ordinal(s.date()), ", ").concat(s.time());
   },
   'nice-year': function niceYear(s) {
-    return "".concat(months.short()[s.month()], " ").concat(fns.ordinal(s.date()), ", ").concat(s.year());
+    return "".concat(months["short"]()[s.month()], " ").concat(fns.ordinal(s.date()), ", ").concat(s.year());
   },
   'nice-day': function niceDay(s) {
-    return "".concat(days.short()[s.day()], " ").concat(fns.titleCase(months.short()[s.month()]), " ").concat(fns.ordinal(s.date()));
+    return "".concat(days["short"]()[s.day()], " ").concat(fns.titleCase(months["short"]()[s.month()]), " ").concat(fns.ordinal(s.date()));
   },
   'nice-full': function niceFull(s) {
     return "".concat(s.dayName(), " ").concat(fns.titleCase(s.monthName()), " ").concat(fns.ordinal(s.date()), ", ").concat(s.time());
@@ -1463,13 +1629,13 @@ var aliases = {
   'time-h24': 'time-24',
   'time-12': 'time',
   'time-h12': 'time',
-  'tz': 'timezone',
+  tz: 'timezone',
   'day-num': 'day-number',
   'month-num': 'month-number',
   'nice-short': 'nice',
-  'mdy': 'numeric-us',
-  'dmy': 'numeric-uk',
-  'ymd': 'numeric',
+  mdy: 'numeric-us',
+  dmy: 'numeric-uk',
+  ymd: 'numeric',
   'yyyy/mm/dd': 'numeric',
   'mm/dd/yyyy': 'numeric-us',
   'dd/mm/yyyy': 'numeric-us',
@@ -1520,10 +1686,12 @@ var printFormat = function printFormat(s) {
 
 module.exports = printFormat;
 
-},{"../../data/days":2,"../../data/months":5,"../../fns":8,"./_offset":19}],21:[function(_dereq_,module,exports){
-'use strict';
+},{"../../data/days":2,"../../data/months":5,"../../fns":8,"./_offset":21}],23:[function(_dereq_,module,exports){
+"use strict";
 
-var pad = _dereq_('../../fns').zeroPad; //parse this insane unix-time-templating thing, from the 19th century
+var pad = _dereq_('../../fns').zeroPad;
+
+var formatTimezone = _dereq_('../../fns').formatTimezone; //parse this insane unix-time-templating thing, from the 19th century
 //http://unicode.org/reports/tr35/tr35-25.html#Date_Format_Patterns
 //time-symbols we support
 
@@ -1701,26 +1869,26 @@ var mapping = {
     return s.timezone().name;
   },
   Z: function Z(s) {
-    return s.timezone().current.offset + '00';
+    return formatTimezone(s.timezone().current.offset);
   },
   ZZ: function ZZ(s) {
-    return s.timezone().current.offset + '00';
+    return formatTimezone(s.timezone().current.offset);
   },
   ZZZ: function ZZZ(s) {
-    return s.timezone().current.offset + '00';
+    return formatTimezone(s.timezone().current.offset);
   },
   ZZZZ: function ZZZZ(s) {
-    return s.timezone().current.offset + ':00';
+    return formatTimezone(s.timezone().current.offset, ':');
   }
 };
 
-var addAlias = function addAlias(char, to, n) {
-  var name = char;
+var addAlias = function addAlias(_char, to, n) {
+  var name = _char;
   var toName = to;
 
   for (var i = 0; i < n; i += 1) {
     mapping[name] = mapping[toName];
-    name += char;
+    name += _char;
     toName += to;
   }
 };
@@ -1774,8 +1942,8 @@ var unixFmt = function unixFmt(s, str) {
 
 module.exports = unixFmt;
 
-},{"../../fns":8}],22:[function(_dereq_,module,exports){
-'use strict';
+},{"../../fns":8}],24:[function(_dereq_,module,exports){
+"use strict";
 
 var fns = _dereq_('../fns');
 
@@ -1786,15 +1954,15 @@ var months = _dereq_('../data/months');
 var addMethods = function addMethods(SpaceTime) {
   var methods = {
     i18n: function i18n(data) {
-      if (!fns.isObject(data) || !fns.isObject(data.days) || !fns.isObject(data.months) || !fns.isArray(data.days.short) || !fns.isArray(data.days.long) || !fns.isArray(data.months.short) || !fns.isArray(data.months.long)) {
+      if (!fns.isObject(data) || !fns.isObject(data.days) || !fns.isObject(data.months) || !fns.isArray(data.days["short"]) || !fns.isArray(data.days["long"]) || !fns.isArray(data.months["short"]) || !fns.isArray(data.months["long"])) {
         throw new Error('Invalid i18n payload passed.');
       }
 
       days.set(data.days);
       months.set(data.months);
-    }
-  }; //hook them into proto
+    } //hook them into proto
 
+  };
   Object.keys(methods).forEach(function (k) {
     SpaceTime.prototype[k] = methods[k];
   });
@@ -1802,13 +1970,14 @@ var addMethods = function addMethods(SpaceTime) {
 
 module.exports = addMethods;
 
-},{"../data/days":2,"../data/months":5,"../fns":8}],23:[function(_dereq_,module,exports){
-'use strict'; //round to either current, or +1 of this unit
+},{"../data/days":2,"../data/months":5,"../fns":8}],25:[function(_dereq_,module,exports){
+"use strict";
+
+var fns = _dereq_('../fns'); //round to either current, or +1 of this unit
+
 
 var nearest = function nearest(s, unit) {
-  unit = unit.toLowerCase();
-  unit = unit.replace(/s$/, ''); //singular form...
-
+  unit = fns.normalize(unit);
   var prog = s.progress();
 
   if (prog[unit] !== undefined) {
@@ -1826,9 +1995,10 @@ var nearest = function nearest(s, unit) {
 
 module.exports = nearest;
 
-},{}],24:[function(_dereq_,module,exports){
-'use strict'; //how far it is along, from 0-1
+},{"../fns":8}],26:[function(_dereq_,module,exports){
+"use strict";
 
+//how far it is along, from 0-1
 var progress = function progress(s) {
   var units = ['year', 'season', 'quarter', 'month', 'week', 'day', 'quarterHour', 'hour', 'minute'];
   var obj = {};
@@ -1844,8 +2014,8 @@ var progress = function progress(s) {
 
 module.exports = progress;
 
-},{}],25:[function(_dereq_,module,exports){
-'use strict';
+},{}],27:[function(_dereq_,module,exports){
+"use strict";
 
 var quarters = _dereq_('../../data/quarters');
 
@@ -2003,8 +2173,8 @@ module.exports = {
   }
 };
 
-},{"../../data/quarters":6,"../../data/seasons":7,"../../fns":8,"../set/set":30}],26:[function(_dereq_,module,exports){
-'use strict';
+},{"../../data/quarters":6,"../../data/seasons":7,"../../fns":8,"../set/set":32}],28:[function(_dereq_,module,exports){
+"use strict";
 
 var normal = _dereq_('./normal');
 
@@ -2027,12 +2197,10 @@ var addMethods = function addMethods(Space) {
 
 module.exports = addMethods;
 
-},{"./destructive":25,"./normal":27,"./tricky":28}],27:[function(_dereq_,module,exports){
-'use strict';
+},{"./destructive":27,"./normal":29,"./tricky":30}],29:[function(_dereq_,module,exports){
+"use strict";
 
-var set = _dereq_('../set/set');
-
-var walkTo = _dereq_('../set/walk'); //the most basic get/set methods
+var set = _dereq_('../set/set'); //the most basic get/set methods
 
 
 var methods = {
@@ -2068,12 +2236,12 @@ var methods = {
 
     if (num !== undefined) {
       var s = this.clone();
-      s.epoch = set.hours(s, num);
-      walkTo(s, {
-        month: this.month(),
-        date: this.date(),
-        hour: num
-      });
+      s.epoch = set.hours(s, num); // walkTo(s, {
+      //   month: this.month(),
+      //   date: this.date(),
+      //   hour: num
+      // })
+
       return s;
     }
 
@@ -2255,9 +2423,9 @@ var methods = {
   fromNow: function fromNow() {
     var d = this.clone().set(Date.now());
     return d.since(this);
-  }
-}; //aliases
+  } //aliases
 
+};
 methods.milliseconds = methods.millisecond;
 methods.seconds = methods.second;
 methods.minutes = methods.minute;
@@ -2268,8 +2436,8 @@ methods.h24 = methods.hour24;
 methods.days = methods.day;
 module.exports = methods;
 
-},{"../set/set":30,"../set/walk":31}],28:[function(_dereq_,module,exports){
-'use strict';
+},{"../set/set":32}],30:[function(_dereq_,module,exports){
+"use strict";
 
 var days = _dereq_('../../data/days');
 
@@ -2290,10 +2458,10 @@ module.exports = {
 
     if (typeof input === 'string') {
       input = input.toLowerCase();
-      want = days.short().indexOf(input);
+      want = days["short"]().indexOf(input);
 
       if (want === -1) {
-        want = days.long().indexOf(input);
+        want = days["long"]().indexOf(input);
       }
     } //move approx
 
@@ -2317,20 +2485,24 @@ module.exports = {
       which = 'pm';
     }
 
-    if (input === undefined) {
+    if (typeof input !== 'string') {
       return which;
-    }
+    } //okay, we're doing a setter
+
 
     var s = this.clone();
+    input = input.toLowerCase().trim(); //ampm should never change the day
+    // - so use `.hour(n)` instead of `.minus(12,'hour')`
 
-    if (input === which) {
-      return s;
+    if (hour >= 12 && input === 'am') {
+      //noon is 12pm
+      hour -= 12;
+      return s.hour(hour);
     }
 
-    if (s === 'am') {
-      s = s.subtract(12, 'hours');
-    } else {
-      s = s.add(12, 'hours');
+    if (hour < 12 && input === 'pm') {
+      hour += 12;
+      return s.hour(hour);
     }
 
     return s;
@@ -2338,7 +2510,7 @@ module.exports = {
   //these are helpful name-wrappers
   dayName: function dayName(input) {
     if (input === undefined) {
-      return days.long()[this.day()];
+      return days["long"]()[this.day()];
     }
 
     var s = this.clone();
@@ -2347,7 +2519,7 @@ module.exports = {
   },
   monthName: function monthName(input) {
     if (input === undefined) {
-      return months.long()[this.month()];
+      return months["long"]()[this.month()];
     }
 
     var s = this.clone();
@@ -2356,9 +2528,10 @@ module.exports = {
   }
 };
 
-},{"../../data/days":2,"../../data/months":5,"../set/walk":31}],29:[function(_dereq_,module,exports){
-'use strict'; //make a string, for easy comparison between dates
+},{"../../data/days":2,"../../data/months":5,"../set/walk":33}],31:[function(_dereq_,module,exports){
+"use strict";
 
+//make a string, for easy comparison between dates
 var print = {
   millisecond: function millisecond(s) {
     return s.epoch;
@@ -2415,10 +2588,11 @@ var addMethods = function addMethods(SpaceTime) {
 
 module.exports = addMethods;
 
-},{}],30:[function(_dereq_,module,exports){
-'use strict'; // javascript setX methods like setDate() can't be used because of the local bias
-//these methods wrap around them.
+},{}],32:[function(_dereq_,module,exports){
+"use strict";
 
+// javascript setX methods like setDate() can't be used because of the local bias
+//these methods wrap around them.
 var ms = _dereq_('../../data/milliseconds');
 
 var months = _dereq_('../../data/months');
@@ -2475,10 +2649,20 @@ module.exports = {
   },
   hours: function hours(s, n) {
     n = validate(n);
+
+    if (n >= 24) {
+      n = 24;
+    } else if (n < 0) {
+      n = 0;
+    }
+
     var old = s.clone();
     var diff = s.hour() - n;
     var shift = diff * ms.hour;
     s.epoch -= shift;
+    walkTo(s, {
+      hour: n
+    });
     confirm(s, old, 'minute');
     return s.epoch;
   },
@@ -2525,7 +2709,21 @@ module.exports = {
     return s.epoch;
   },
   date: function date(s, n) {
-    n = validate(n);
+    n = validate(n); //avoid setting february 31st
+
+    if (n > 28) {
+      var max = monthLength[s.month()];
+
+      if (n > max) {
+        n = max;
+      }
+    } //avoid setting < 0
+
+
+    if (n <= 0) {
+      n = 1;
+    }
+
     walkTo(s, {
       date: n
     });
@@ -2537,7 +2735,16 @@ module.exports = {
       n = months.mapping()[n.toLowerCase()];
     }
 
-    n = validate(n);
+    n = validate(n); //don't go past december
+
+    if (n >= 12) {
+      n = 11;
+    }
+
+    if (n <= 0) {
+      n = 0;
+    }
+
     var date = s.date(); //there's no 30th of february, etc.
 
     if (date > monthLength[n]) {
@@ -2561,16 +2768,23 @@ module.exports = {
   dayOfYear: function dayOfYear(s, n) {
     n = validate(n);
     var old = s.clone();
-    var diff = n - s.dayOfYear();
-    var shift = diff * ms.day;
-    s.epoch += shift;
+    n -= 1; //days are 1-based
+
+    if (n <= 0) {
+      n = 0;
+    } else if (n >= 365) {
+      n = 364;
+    }
+
+    s = s.startOf('year');
+    s = s.add(n, 'day');
     confirm(s, old, 'hour');
     return s.epoch;
   }
 };
 
-},{"../../data/milliseconds":3,"../../data/monthLengths":4,"../../data/months":5,"./walk":31}],31:[function(_dereq_,module,exports){
-'use strict';
+},{"../../data/milliseconds":3,"../../data/monthLengths":4,"../../data/months":5,"./walk":33}],33:[function(_dereq_,module,exports){
+"use strict";
 
 var ms = _dereq_('../../data/milliseconds'); //basically, step-forward/backward until js Date object says we're there.
 
@@ -2609,7 +2823,7 @@ var walk = function walk(s, n, fn, unit, previous) {
 
 
   if (previous !== null && startUnit !== s.d[previous]()) {
-    console.warn('spacetime warning: missed setting ' + unit);
+    // console.warn('spacetime warning: missed setting ' + unit)
     s.epoch = original;
   }
 }; //find the desired date by a increment/check while loop
@@ -2737,8 +2951,8 @@ var walkTo = function walkTo(s, wants) {
 
 module.exports = walkTo;
 
-},{"../../data/milliseconds":3}],32:[function(_dereq_,module,exports){
-'use strict';
+},{"../../data/milliseconds":3}],34:[function(_dereq_,module,exports){
+"use strict";
 
 var fns = _dereq_('../fns'); //by spencermountain + Shaun Grady
 //our conceptual 'break-points' for each unit
@@ -2787,16 +3001,9 @@ function getDiff(a, b) {
     }
 
     var max = earlier.diff(later, unit);
-    earlier = earlier.add(max, unit); //did we go one too far?
-
-    if (earlier.epoch > later.epoch + 10) {
-      //(fudge this calc by 10 milliseconds)
-      earlier = earlier.subtract(1, unit);
-      max -= 1;
-    }
-
+    earlier = earlier.add(max, unit);
     diff[unit] = max;
-  }); //reverse it
+  }); //reverse it, if necessary
 
   if (isBefore) {
     Object.keys(diff).forEach(function (u) {
@@ -2890,8 +3097,8 @@ var since = function since(start, end) {
 
 module.exports = since;
 
-},{"../fns":8}],33:[function(_dereq_,module,exports){
-'use strict';
+},{"../fns":8}],35:[function(_dereq_,module,exports){
+"use strict";
 
 var seasons = _dereq_('../data/seasons');
 
@@ -3079,8 +3286,8 @@ module.exports = {
   endOf: endOf
 };
 
-},{"../data/quarters":6,"../data/seasons":7,"./set/walk":31}],34:[function(_dereq_,module,exports){
-'use strict';
+},{"../data/quarters":6,"../data/seasons":7,"./set/walk":33}],36:[function(_dereq_,module,exports){
+"use strict";
 
 var quickOffset = _dereq_('./timezone/quick');
 
@@ -3093,9 +3300,9 @@ var methods = _dereq_('./methods');
 var timezones = _dereq_('../zonefile/unpack'); //fake timezone-support, for fakers (es5 class)
 
 
-var SpaceTime = function SpaceTime(input, tz, options) {
-  options = options || {}; //the holy moment
-
+var SpaceTime = function SpaceTime(input, tz) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  //the holy moment
   this.epoch = null; //the shift for the given timezone
 
   this.tz = findTz(tz, timezones); //whether to output warnings to console
@@ -3160,7 +3367,7 @@ _dereq_('./methods/i18n')(SpaceTime);
 
 module.exports = SpaceTime;
 
-},{"../zonefile/unpack":45,"./input":11,"./methods":15,"./methods/add":16,"./methods/compare":17,"./methods/i18n":22,"./methods/query":26,"./methods/same":29,"./timezone/find":36,"./timezone/quick":39}],35:[function(_dereq_,module,exports){
+},{"../zonefile/unpack":47,"./input":11,"./methods":16,"./methods/add":17,"./methods/compare":18,"./methods/i18n":24,"./methods/query":28,"./methods/same":31,"./timezone/find":38,"./timezone/quick":41}],37:[function(_dereq_,module,exports){
 "use strict";
 
 var informal = _dereq_('../../zonefile/informal').informal; //these timezone abbreviations are used aggressively in other places
@@ -3257,8 +3464,8 @@ var display = function display(tz, obj) {
 
 module.exports = display;
 
-},{"../../zonefile/informal":44}],36:[function(_dereq_,module,exports){
-'use strict';
+},{"../../zonefile/informal":46}],38:[function(_dereq_,module,exports){
+"use strict";
 
 var tzs = _dereq_('../../zonefile/unpack');
 
@@ -3270,7 +3477,7 @@ var local = guessTz();
 var isOffset = /(\-?[0-9]+)h(rs)?/; //add all the city names by themselves
 
 var cities = Object.keys(tzs).reduce(function (h, k) {
-  var city = k.split('/')[1];
+  var city = k.split('/')[1] || '';
   city = city.replace(/_/g, ' ');
   h[city] = k;
   return h;
@@ -3337,18 +3544,19 @@ var lookupTz = function lookupTz(str, zones) {
     }
   }
 
-  console.warn('Cannot find timezone named: \'' + str + '\'');
+  console.warn("Cannot find timezone named: '" + str + "'");
   return local;
 };
 
 module.exports = lookupTz;
 
-},{"../../zonefile/informal":44,"../../zonefile/unpack":45,"./guessTz":37}],37:[function(_dereq_,module,exports){
-'use strict'; //find the implicit iana code for this machine.
+},{"../../zonefile/informal":46,"../../zonefile/unpack":47,"./guessTz":39}],39:[function(_dereq_,module,exports){
+"use strict";
+
+//find the implicit iana code for this machine.
 //safely query the Intl object
 //based on - https://bitbucket.org/pellepim/jstimezonedetect/src
-
-var fallbackTZ = 'asia/shanghai'; //
+var fallbackTZ = 'utc'; //
 //this Intl object is not supported often, yet
 
 var safeIntl = function safeIntl() {
@@ -3364,11 +3572,11 @@ var safeIntl = function safeIntl() {
 
   var timezone = format.resolvedOptions().timeZone;
 
-  if (!timezone || timezone.indexOf('/') === -1 && timezone === 'UTC') {
+  if (!timezone) {
     return null;
   }
 
-  return timezone;
+  return timezone.toLowerCase();
 };
 
 var guessTz = function guessTz() {
@@ -3378,14 +3586,14 @@ var guessTz = function guessTz() {
     return fallbackTZ;
   }
 
-  return timezone.toLowerCase();
+  return timezone;
 }; //do it once per computer
 
 
 module.exports = guessTz;
 
-},{}],38:[function(_dereq_,module,exports){
-'use strict'; // const zones = require('../../data');
+},{}],40:[function(_dereq_,module,exports){
+"use strict";
 
 var findTz = _dereq_('./find');
 
@@ -3404,7 +3612,7 @@ var parseDst = function parseDst(dst) {
 var titleCase = function titleCase(str) {
   str = str[0].toUpperCase() + str.substr(1);
   str = str.replace(/\/gmt/, '/GMT');
-  str = str.replace(/[\/_]([a-z])/ig, function (s) {
+  str = str.replace(/[\/_]([a-z])/gi, function (s) {
     return s.toUpperCase();
   });
   return str;
@@ -3485,15 +3693,21 @@ var timezone = function timezone(s) {
 
 module.exports = timezone;
 
-},{"./display":35,"./find":36,"./summerTime":40}],39:[function(_dereq_,module,exports){
+},{"./display":37,"./find":38,"./summerTime":42}],41:[function(_dereq_,module,exports){
 "use strict";
 
-var isSummer = _dereq_('./summerTime'); //
+var isSummer = _dereq_('./summerTime'); // this method avoids having to do a full dst-calculation on every operation
+// it reproduces some things in ./index.js, but speeds up spacetime considerably
 
 
 var quickOffset = function quickOffset(s) {
   var zones = s.timezones;
   var obj = zones[s.tz];
+
+  if (obj === undefined) {
+    console.warn("Warning: couldn't find timezone " + s.tz);
+    return 0;
+  }
 
   if (obj.dst === undefined) {
     return obj.offset;
@@ -3519,8 +3733,8 @@ var quickOffset = function quickOffset(s) {
 
 module.exports = quickOffset;
 
-},{"./summerTime":40}],40:[function(_dereq_,module,exports){
-'use strict';
+},{"./summerTime":42}],42:[function(_dereq_,module,exports){
+"use strict";
 
 var zeroPad = _dereq_('../fns').zeroPad;
 
@@ -3556,8 +3770,8 @@ var shouldChange = function shouldChange(epoch, start, end, defaultOffset) {
 
 module.exports = shouldChange;
 
-},{"../fns":8}],41:[function(_dereq_,module,exports){
-'use strict';
+},{"../fns":8}],43:[function(_dereq_,module,exports){
+"use strict";
 
 var Spacetime = _dereq_('./spacetime'); // const timezones = require('../data');
 
@@ -3603,18 +3817,18 @@ var whereIts = function whereIts(a, b) {
 
 module.exports = whereIts;
 
-},{"./spacetime":34}],42:[function(_dereq_,module,exports){
+},{"./spacetime":36}],44:[function(_dereq_,module,exports){
 module.exports={
   "9|s": "2/dili,2/jayapura",
   "9|n": "2/chita,2/khandyga,2/pyongyang,2/seoul,2/tokyo,11/palau",
-  "9.5|s|04/01:03->10/07:02": "4/adelaide,4/broken_hill,4/south,4/yancowinna",
+  "9.5|s|04/07:03->10/06:02": "4/adelaide,4/broken_hill,4/south,4/yancowinna",
   "9.5|s": "4/darwin,4/north",
   "8|s": "12/casey,2/kuala_lumpur,2/makassar,2/singapore,4/perth,4/west",
   "8|n|03/25:03->09/29:23": "2/ulan_bator",
   "8|n": "2/brunei,2/choibalsan,2/chongqing,2/chungking,2/harbin,2/hong_kong,2/irkutsk,2/kuching,2/macao,2/macau,2/manila,2/shanghai,2/taipei,2/ujung_pandang,2/ulaanbaatar",
   "8.75|s": "4/eucla",
   "7|s": "12/davis,2/jakarta,9/christmas",
-  "7|n": "2/bangkok,2/barnaul,2/ho_chi_minh,2/hovd,2/krasnoyarsk,2/novokuznetsk,2/novosibirsk,2/phnom_penh,2/pontianak,2/saigon,2/vientiane",
+  "7|n": "2/bangkok,2/barnaul,2/ho_chi_minh,2/hovd,2/krasnoyarsk,2/novokuznetsk,2/novosibirsk,2/phnom_penh,2/pontianak,2/saigon,2/tomsk,2/vientiane",
   "6|s": "12/vostok",
   "6|n": "2/almaty,2/bishkek,2/dacca,2/dhaka,2/kashgar,2/omsk,2/qyzylorda,2/thimbu,2/thimphu,2/urumqi,9/chagos",
   "6.5|n": "2/rangoon,9/cocos",
@@ -3623,89 +3837,89 @@ module.exports={
   "5.75|n": "2/kathmandu,2/katmandu",
   "5.5|n": "2/calcutta,2/colombo,2/kolkata",
   "4|s": "9/reunion",
-  "4|n": "2/dubai,2/muscat,2/tbilisi,2/yerevan,8/astrakhan,8/samara,8/saratov,8/ulyanovsk,9/mahe,9/mauritius",
+  "4|n": "2/dubai,2/muscat,2/tbilisi,2/yerevan,8/astrakhan,8/samara,8/saratov,8/ulyanovsk,8/volgograd,2/volgograd,9/mahe,9/mauritius",
   "4.5|n|03/22:00->09/21:24": "2/tehran",
   "4.5|n": "2/kabul",
   "3|s": "12/syowa,9/antananarivo",
-  "3|n|03/30:00->10/26:01": "2/amman",
-  "3|n|03/30:00->10/25:24": "2/damascus",
-  "3|n|03/25:03->10/28:04": "2/nicosia,8/athens,8/bucharest,8/helsinki,8/kiev,8/mariehamn,8/nicosia,8/riga,8/sofia,8/tallinn,8/uzhgorod,8/vilnius,8/zaporozhye",
-  "3|n|03/25:02->10/28:03": "8/chisinau,8/tiraspol",
-  "3|n|03/25:00->10/27:24": "2/beirut",
-  "3|n|03/24:01->10/27:01": "2/gaza,2/hebron",
-  "3|n|03/23:02->10/28:02": "2/jerusalem,2/tel_aviv",
-  "3|n": "0/addis_ababa,0/asmara,0/asmera,0/dar_es_salaam,0/djibouti,0/juba,0/kampala,0/mogadishu,0/nairobi,2/aden,2/baghdad,2/bahrain,2/istanbul,2/kuwait,2/qatar,2/riyadh,8/istanbul,8/kirov,8/minsk,8/moscow,8/simferopol,8/volgograd,9/comoro,9/mayotte",
-  "2|s|03/25:02->10/28:02": "12/troll",
+  "3|n|03/31:03->10/27:04": "2/nicosia,8/athens,8/bucharest,8/helsinki,8/kiev,8/mariehamn,8/nicosia,8/riga,8/sofia,8/tallinn,8/uzhgorod,8/vilnius,8/zaporozhye",
+  "3|n|03/31:02->10/27:03": "8/chisinau,8/tiraspol",
+  "3|n|03/31:00->10/26:24": "2/beirut",
+  "3|n|03/29:02->10/27:02": "2/jerusalem,2/tel_aviv",
+  "3|n|03/29:00->10/25:01": "2/amman",
+  "3|n|03/29:00->10/24:24": "2/damascus",
+  "3|n|03/23:01->10/26:01": "2/gaza,2/hebron",
+  "3|n": "0/addis_ababa,0/asmara,0/asmera,0/dar_es_salaam,0/djibouti,0/juba,0/kampala,0/mogadishu,0/nairobi,2/aden,2/baghdad,2/bahrain,2/istanbul,2/kuwait,2/qatar,2/riyadh,8/istanbul,8/kirov,8/minsk,8/moscow,8/simferopol,9/comoro,9/mayotte",
+  "2|s|03/31:02->10/27:02": "12/troll",
   "2|s": "0/gaborone,0/harare,0/johannesburg,0/lubumbashi,0/lusaka,0/maputo,0/maseru,0/mbabane",
-  "2|n|03/25:02->10/28:03": "0/ceuta,arctic/longyearbyen,3/jan_mayen,8/amsterdam,8/andorra,8/belgrade,8/berlin,8/bratislava,8/brussels,8/budapest,8/busingen,8/copenhagen,8/gibraltar,8/ljubljana,8/luxembourg,8/madrid,8/malta,8/monaco,8/oslo,8/paris,8/podgorica,8/prague,8/rome,8/san_marino,8/sarajevo,8/skopje,8/stockholm,8/tirane,8/vaduz,8/vatican,8/vienna,8/warsaw,8/zagreb,8/zurich",
+  "2|n|03/31:02->10/27:03": "0/ceuta,arctic/longyearbyen,3/jan_mayen,8/amsterdam,8/andorra,8/belgrade,8/berlin,8/bratislava,8/brussels,8/budapest,8/busingen,8/copenhagen,8/gibraltar,8/ljubljana,8/luxembourg,8/madrid,8/malta,8/monaco,8/oslo,8/paris,8/podgorica,8/prague,8/rome,8/san_marino,8/sarajevo,8/skopje,8/stockholm,8/tirane,8/vaduz,8/vatican,8/vienna,8/warsaw,8/zagreb,8/zurich",
   "2|n": "0/blantyre,0/bujumbura,0/cairo,0/khartoum,0/kigali,0/tripoli,8/kaliningrad",
   "1|s|04/02:01->09/03:03": "0/windhoek",
   "1|s": "0/kinshasa,0/luanda",
-  "1|n|07/02:03->10/29:02": "0/casablanca,0/el_aaiun",
-  "1|n|03/25:01->10/28:02": "3/canary,3/faeroe,3/faroe,3/madeira,8/belfast,8/dublin,8/guernsey,8/isle_of_man,8/jersey,8/lisbon,8/london",
+  "1|n|05/05:03->06/09:02": "0/casablanca,0/el_aaiun",
+  "1|n|03/31:01->10/27:02": "3/canary,3/faeroe,3/faroe,3/madeira,8/belfast,8/dublin,8/guernsey,8/isle_of_man,8/jersey,8/lisbon,8/london",
   "1|n": "0/algiers,0/bangui,0/brazzaville,0/douala,0/lagos,0/libreville,0/malabo,0/ndjamena,0/niamey,0/porto-novo,0/tunis",
   "14|n": "11/kiritimati",
-  "13|s|04/01:04->09/30:03": "11/apia",
+  "13|s|04/07:04->09/29:03": "11/apia",
   "13|s|01/15:02->11/05:03": "11/tongatapu",
   "13|n": "11/enderbury,11/fakaofo",
-  "12|s|04/01:03->09/30:02": "12/mcmurdo,12/south_pole,11/auckland",
-  "12|s|01/14:03->11/04:02": "11/fiji",
+  "12|s|04/07:03->09/29:02": "12/mcmurdo,12/south_pole,11/auckland",
+  "12|s|01/13:03->11/03:02": "11/fiji",
   "12|n": "2/anadyr,2/kamchatka,2/srednekolymsk,11/funafuti,11/kwajalein,11/majuro,11/nauru,11/tarawa,11/wake,11/wallis",
-  "12.75|s|04/07:03->09/29:02": "11/chatham",
+  "12.75|s|04/07:03->04/07:02": "11/chatham",
   "11|s": "12/macquarie,11/bougainville",
   "11|n": "2/magadan,2/sakhalin,11/efate,11/guadalcanal,11/kosrae,11/noumea,11/pohnpei,11/ponape",
   "11.5|n": "11/norfolk",
-  "10|s|04/01:03->10/07:02": "4/act,4/canberra,4/currie,4/hobart,4/melbourne,4/nsw,4/sydney,4/tasmania,4/victoria",
+  "10|s|04/07:03->10/06:02": "4/act,4/canberra,4/currie,4/hobart,4/melbourne,4/nsw,4/sydney,4/tasmania,4/victoria",
   "10|s": "12/dumontdurville,4/brisbane,4/lindeman,4/queensland",
   "10|n": "2/ust-nera,2/vladivostok,2/yakutsk,11/chuuk,11/guam,11/port_moresby,11/saipan,11/truk,11/yap",
-  "10.5|s|04/01:01->10/07:02": "4/lhi,4/lord_howe",
-  "0|n|03/25:00->10/28:01": "1/scoresbysund,3/azores",
+  "10.5|s|04/07:01->10/06:02": "4/lhi,4/lord_howe",
+  "0|n|03/31:00->10/27:01": "1/scoresbysund,3/azores",
   "0|n": "0/abidjan,0/accra,0/bamako,0/banjul,0/bissau,0/conakry,0/dakar,0/freetown,0/lome,0/monrovia,0/nouakchott,0/ouagadougou,0/sao_tome,0/timbuktu,1/danmarkshavn,3/reykjavik,3/st_helena,13/gmt,13/gmt+0,13/gmt-0,13/gmt0,13/greenwich,13/utc,13/universal,13/zulu",
-  "-9|n|03/11:02->11/04:02": "1/adak,1/atka",
+  "-9|n|03/10:02->11/03:02": "1/adak,1/atka",
   "-9|n": "11/gambier",
   "-9.5|n": "11/marquesas",
-  "-8|n|03/11:02->11/04:02": "1/anchorage,1/juneau,1/metlakatla,1/nome,1/sitka,1/yakutat",
+  "-8|n|03/10:02->11/03:02": "1/anchorage,1/juneau,1/metlakatla,1/nome,1/sitka,1/yakutat",
   "-8|n": "11/pitcairn",
-  "-7|n|03/11:02->11/04:02": "1/dawson,1/ensenada,1/los_angeles,1/santa_isabel,1/tijuana,1/vancouver,1/whitehorse,6/pacific,6/yukon,10/bajanorte",
+  "-7|n|03/10:02->11/03:02": "1/dawson,1/ensenada,1/los_angeles,1/santa_isabel,1/tijuana,1/vancouver,1/whitehorse,6/pacific,6/yukon,10/bajanorte",
   "-7|n": "1/creston,1/dawson_creek,1/hermosillo,1/phoenix",
-  "-6|s|05/12:22->08/11:22": "7/easterisland,11/easter",
-  "-6|n|04/01:02->10/28:02": "1/chihuahua,1/mazatlan,10/bajasur",
-  "-6|n|03/11:02->11/04:02": "1/boise,1/cambridge_bay,1/denver,1/edmonton,1/inuvik,1/ojinaga,1/shiprock,1/yellowknife,6/mountain",
+  "-6|s|04/06:22->09/07:22": "7/easterisland,11/easter",
+  "-6|n|04/07:02->10/27:02": "1/chihuahua,1/mazatlan,10/bajasur",
+  "-6|n|03/10:02->11/03:02": "1/boise,1/cambridge_bay,1/denver,1/edmonton,1/inuvik,1/ojinaga,1/shiprock,1/yellowknife,6/mountain",
   "-6|n": "1/belize,1/costa_rica,1/el_salvador,1/guatemala,1/managua,1/regina,1/swift_current,1/tegucigalpa,6/east-saskatchewan,6/saskatchewan,11/galapagos",
   "-5|s": "1/lima,1/rio_branco,5/acre",
-  "-5|n|04/01:02->10/28:02": "1/bahia_banderas,1/merida,1/mexico_city,1/monterrey,10/general",
+  "-5|n|04/07:02->10/27:02": "1/bahia_banderas,1/merida,1/mexico_city,1/monterrey,10/general",
   "-5|n|03/12:03->11/05:01": "1/north_dakota",
-  "-5|n|03/11:02->11/04:02": "1/chicago,1/knox_in,1/matamoros,1/menominee,1/rainy_river,1/rankin_inlet,1/resolute,1/winnipeg,6/central",
+  "-5|n|03/10:02->11/03:02": "1/chicago,1/knox_in,1/matamoros,1/menominee,1/rainy_river,1/rankin_inlet,1/resolute,1/winnipeg,6/central",
   "-5|n": "1/atikokan,1/bogota,1/cancun,1/cayman,1/coral_harbour,1/eirunepe,1/guayaquil,1/jamaica,1/panama,1/porto_acre",
   "-4|s|05/13:23->08/13:01": "12/palmer",
-  "-4|s|05/12:24->08/12:00": "1/santiago,7/continental",
-  "-4|s|03/24:24->10/07:00": "1/asuncion",
-  "-4|s|02/17:24->11/04:00": "1/campo_grande,1/cuiaba",
+  "-4|s|04/06:24->09/08:00": "1/santiago,7/continental",
+  "-4|s|03/23:24->10/06:00": "1/asuncion",
+  "-4|s|02/16:24->11/03:00": "1/campo_grande,1/cuiaba",
   "-4|s": "1/la_paz,1/manaus,5/west",
   "-4|n|03/12:03->11/05:01": "1/indiana,1/kentucky",
-  "-4|n|03/11:02->11/04:02": "1/detroit,1/fort_wayne,1/grand_turk,1/indianapolis,1/iqaluit,1/louisville,1/montreal,1/nassau,1/new_york,1/nipigon,1/pangnirtung,1/port-au-prince,1/thunder_bay,1/toronto,6/eastern",
-  "-4|n|03/11:00->11/04:01": "1/havana",
+  "-4|n|03/10:02->11/03:02": "1/detroit,1/fort_wayne,1/grand_turk,1/indianapolis,1/iqaluit,1/louisville,1/montreal,1/nassau,1/new_york,1/nipigon,1/pangnirtung,1/port-au-prince,1/thunder_bay,1/toronto,6/eastern",
+  "-4|n|03/10:00->11/03:01": "1/havana",
   "-4|n": "1/anguilla,1/antigua,1/aruba,1/barbados,1/blanc-sablon,1/boa_vista,1/caracas,1/curacao,1/dominica,1/grenada,1/guadeloupe,1/guyana,1/kralendijk,1/lower_princes,1/marigot,1/martinique,1/montserrat,1/port_of_spain,1/porto_velho,1/puerto_rico,1/santo_domingo,1/st_barthelemy,1/st_kitts,1/st_lucia,1/st_thomas,1/st_vincent,1/tortola,1/virgin",
-  "-3|s|02/17:24->11/04:00": "1/sao_paulo,5/east",
+  "-3|s|02/16:24->11/03:00": "1/sao_paulo,5/east",
   "-3|s": "1/argentina,1/buenos_aires,1/cordoba,1/fortaleza,1/montevideo,1/punta_arenas,12/rothera,3/stanley",
-  "-3|n|03/11:02->11/04:02": "1/glace_bay,1/goose_bay,1/halifax,1/moncton,1/thule,3/bermuda,6/atlantic",
+  "-3|n|03/10:02->11/03:02": "1/glace_bay,1/goose_bay,1/halifax,1/moncton,1/thule,3/bermuda,6/atlantic",
   "-3|n": "1/araguaina,1/bahia,1/belem,1/catamarca,1/cayenne,1/jujuy,1/maceio,1/mendoza,1/paramaribo,1/recife,1/rosario,1/santarem",
   "-2|s": "5/denoronha",
-  "-2|n|03/24:22->10/27:23": "1/godthab",
-  "-2|n|03/11:02->11/04:02": "1/miquelon",
+  "-2|n|03/30:22->10/26:23": "1/godthab",
+  "-2|n|03/10:02->11/03:02": "1/miquelon",
   "-2|n": "1/noronha,3/south_georgia",
-  "-2.5|n|03/11:02->11/04:02": "1/st_johns,6/newfoundland",
+  "-2.5|n|03/10:02->11/03:02": "1/st_johns,6/newfoundland",
   "-1|n": "3/cape_verde",
   "-11|n": "11/midway,11/niue,11/pago_pago,11/samoa",
   "-10|n": "11/honolulu,11/johnston,11/rarotonga,11/tahiti"
 }
-},{}],43:[function(_dereq_,module,exports){
+},{}],45:[function(_dereq_,module,exports){
 "use strict";
 
 //prefixes for iana names..
 module.exports = ['africa', 'america', 'asia', 'atlantic', 'australia', 'brazil', 'canada', 'chile', 'europe', 'indian', 'mexico', 'pacific', 'antarctica', 'etc'];
 
-},{}],44:[function(_dereq_,module,exports){
+},{}],46:[function(_dereq_,module,exports){
 "use strict";
 
 // this is a very rough list of informal and abbreviated timezones
@@ -3977,7 +4191,7 @@ module.exports = {
   lookup: lookup
 };
 
-},{}],45:[function(_dereq_,module,exports){
+},{}],47:[function(_dereq_,module,exports){
 "use strict";
 
 var data = _dereq_('./_build.json');
@@ -4004,9 +4218,15 @@ Object.keys(data).forEach(function (k) {
     });
     all[str] = obj;
   });
-}); //add etc/gmt+n
+});
+all['utc'] = {
+  offset: 0,
+  hem: 'n' //(sorry)
+  //add etc/gmt+n
 
-for (var i = -12; i < 13; i += 1) {
+};
+
+for (var i = -13; i <= 13; i += 0.5) {
   var num = i;
 
   if (num > 0) {
@@ -4032,7 +4252,7 @@ for (var i = -12; i < 13; i += 1) {
 
 module.exports = all;
 
-},{"./_build.json":42,"./_prefixes.js":43}]},{},[9])(9)
+},{"./_build.json":44,"./_prefixes.js":45}]},{},[9])(9)
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
@@ -4070,6 +4290,14 @@ var methods = _dereq_('./methods');
 var chooseMethod = function chooseMethod(start, end) {
   var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 6;
   var diff = start.diff(end);
+
+  if (diff.years > 300) {
+    return methods.centuries(start, end, n);
+  }
+
+  if (diff.years > 30) {
+    return methods.decades(start, end, n);
+  }
 
   if (diff.years > 3) {
     return methods.years(start, end, n);
@@ -4143,6 +4371,30 @@ var formatTicks = function formatTicks(arr, fmt, start, end) {
 };
 
 var methods = {
+  centuries: function centuries(start, end, n) {
+    var ticks = allTicks(start, end, 'century');
+    ticks = reduceTo(ticks, n);
+    var fmt = '{year}';
+
+    if (start.diff(end, 'year') > 6) {
+      fmt = '{year}';
+    }
+
+    ticks = formatTicks(ticks, fmt, start, end);
+    return ticks;
+  },
+  decades: function decades(start, end, n) {
+    var ticks = allTicks(start, end, 'decade');
+    ticks = reduceTo(ticks, n);
+    var fmt = '{year}';
+
+    if (start.diff(end, 'year') > 6) {
+      fmt = '{year}';
+    }
+
+    ticks = formatTicks(ticks, fmt, start, end);
+    return ticks;
+  },
   years: function years(start, end, n) {
     var ticks = allTicks(start, end, 'year');
     ticks = reduceTo(ticks, n);
