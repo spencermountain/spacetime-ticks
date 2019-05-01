@@ -1,6 +1,6 @@
 {
   "name": "spacetime-ticks",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "calculate the best breakpoints between two dates",
   "main": "builds/spacetime-ticks.js",
   "unpkg": "builds/spacetime-ticks.min.js",
@@ -21,19 +21,19 @@
     "url": "https://github.com/spencermountain/frown/issues"
   },
   "homepage": "https://github.com/spencermountain/frown#readme",
-  "dependencies": {
-    "spacetime": "5.7.0"
+  "peerDependencies": {
+    "spacetime": "5.x"
   },
   "devDependencies": {
-    "@babel/core": "7.4.3",
-    "@babel/preset-env": "7.4.3",
+    "@babel/core": "7.4.4",
+    "@babel/preset-env": "7.4.4",
     "babelify": "10.0.0",
     "budo": "11.6.2",
     "derequire": "2.0.6",
     "htm": "2.1.1",
     "shelljs": "0.8.3",
-    "somehow": "0.0.16",
-    "somehow-input": "0.0.7",
+    "somehow": "0.0.17",
+    "somehow-input": "0.0.8",
     "spencer-color": "0.1.0",
     "spencer-css": "1.0.2",
     "terser": "3.17.0",
