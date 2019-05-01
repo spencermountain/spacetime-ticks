@@ -1,4 +1,4 @@
-/* somehow v0.1.0
+/* somehow v0.1.1
    github.com/spencermountain/spacetime-ticks
    MIT
 */
@@ -4320,6 +4320,15 @@ var chooseMethod = function chooseMethod(start, end) {
   }
 
   return methods.months(start, end, n);
+}; //flip it around backwards
+
+
+var reverseTicks = function reverseTicks(ticks) {
+  ticks = ticks.map(function (o) {
+    o.value = 1 - o.value;
+    return o;
+  });
+  return ticks.reverse();
 };
 
 var spacetimeTicks = function spacetimeTicks(start, end) {
@@ -4338,7 +4347,7 @@ var spacetimeTicks = function spacetimeTicks(start, end) {
   var ticks = chooseMethod(start, end, n); //support backwards ticks
 
   if (reverse === true) {
-    ticks = ticks.reverse();
+    ticks = reverseTicks(ticks);
   }
 
   return ticks;

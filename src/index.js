@@ -27,6 +27,15 @@ const chooseMethod = function(start, end, n = 6) {
   return methods.months(start, end, n)
 }
 
+//flip it around backwards
+const reverseTicks = function(ticks) {
+  ticks = ticks.map(o => {
+    o.value = 1 - o.value
+    return o
+  })
+  return ticks.reverse()
+}
+
 const spacetimeTicks = function(start, end, n = 6) {
   let reverse = false
   start = spacetime(start)
@@ -41,7 +50,7 @@ const spacetimeTicks = function(start, end, n = 6) {
   let ticks = chooseMethod(start, end, n)
   //support backwards ticks
   if (reverse === true) {
-    ticks = ticks.reverse()
+    ticks = reverseTicks(ticks)
   }
   return ticks
 }
