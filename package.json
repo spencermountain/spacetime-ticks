@@ -1,6 +1,6 @@
 {
   "name": "spacetime-ticks",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "calculate the best breakpoints between two dates",
   "main": "src/index.js",
   "unpkg": "builds/spacetime-ticks.min.js",
@@ -21,8 +21,8 @@
     "url": "https://github.com/spencermountain/frown/issues"
   },
   "homepage": "https://github.com/spencermountain/frown#readme",
-  "peerDependencies": {
-    "spacetime": "5.x"
+  "dependencies": {
+    "spacetime": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.4",

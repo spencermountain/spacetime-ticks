@@ -1,4 +1,4 @@
-/* somehow v0.1.1
+/* somehow v0.1.2
    github.com/spencermountain/spacetime-ticks
    MIT
 */
