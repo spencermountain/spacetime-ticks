@@ -1,4 +1,4 @@
-/* somehow v0.0.6
+/* somehow v0.1.0
    github.com/spencermountain/spacetime-ticks
    MIT
 */
@@ -4324,16 +4324,23 @@ var chooseMethod = function chooseMethod(start, end) {
 
 var spacetimeTicks = function spacetimeTicks(start, end) {
   var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 6;
+  var reverse = false;
   start = spacetime(start);
   end = spacetime(end); //reverse them, if necessary
 
   if (start.epoch > end.epoch) {
+    reverse = true;
     var tmp = start.epoch;
     start.epoch = end.epoch;
     end.epoch = tmp;
   }
 
-  var ticks = chooseMethod(start, end, n);
+  var ticks = chooseMethod(start, end, n); //support backwards ticks
+
+  if (reverse === true) {
+    ticks = ticks.reverse();
+  }
+
   return ticks;
 };
 

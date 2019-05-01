@@ -28,15 +28,21 @@ const chooseMethod = function(start, end, n = 6) {
 }
 
 const spacetimeTicks = function(start, end, n = 6) {
+  let reverse = false
   start = spacetime(start)
   end = spacetime(end)
   //reverse them, if necessary
   if (start.epoch > end.epoch) {
+    reverse = true
     let tmp = start.epoch
     start.epoch = end.epoch
     end.epoch = tmp
   }
   let ticks = chooseMethod(start, end, n)
+  //support backwards ticks
+  if (reverse === true) {
+    ticks = ticks.reverse()
+  }
   return ticks
 }
 module.exports = spacetimeTicks
