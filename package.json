@@ -4,6 +4,7 @@
   "description": "calculate the best breakpoints between two dates",
   "main": "src/index.js",
   "unpkg": "builds/spacetime-ticks.min.js",
+  "module": "builds/spacetime-ticks.mjs",
   "author": "Spencer Kelly (spencermountain)",
   "license": "MIT",
   "scripts": {
