@@ -1,5 +1,6 @@
 const spacetime = require('spacetime')
 const methods = require('./methods')
+const version = require('../_version')
 
 const chooseMethod = function(start, end, n = 6) {
   let diff = start.diff(end)
@@ -54,4 +55,6 @@ const spacetimeTicks = function(start, end, n = 6) {
   }
   return ticks
 }
+spacetimeTicks.version = version
+
 module.exports = spacetimeTicks
