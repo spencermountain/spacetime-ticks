@@ -48,6 +48,10 @@ const spacetimeTicks = function(start, end, n = 6) {
     start.epoch = end.epoch
     end.epoch = tmp
   }
+  // nudge first one back 1 minute
+  if (start.time() === '12:00am') {
+    start = start.minus(1, 'minute')
+  }
   let ticks = chooseMethod(start, end, n)
   //support backwards ticks
   if (reverse === true) {
